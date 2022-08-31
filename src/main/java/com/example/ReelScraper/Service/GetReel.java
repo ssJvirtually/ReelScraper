@@ -4,7 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
@@ -23,12 +28,18 @@ public class GetReel {
 
     public File getReels(String linkofReel){
         // Configuring the system properties of chrome driver
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\HP\\Downloads\\chromedriver_win32\\chromedriver.exe");
 
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        WebDriver driver = new ChromeDriver(options);
+        //System.setProperty("webdriver.chrome.driver", "/home/shashi/Downloads/ReelScraper-master/chromedriver");
 
+        //ChromeOptions options = new ChromeOptions();
+
+        System.setProperty("webdriver.gecko.driver", "geckodriver");
+
+        FirefoxOptions options =   new FirefoxOptions();
+        //options.setHeadless(true);
+        //options.setBinary("/home/shashi/Downloads/ReelScraper-master/google-chrome-stable_current_amd64.deb");
+        //WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new FirefoxDriver(options);
 
         driver.get("https://instafinsta.com/reels");
 
