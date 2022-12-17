@@ -4,15 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedInputStream;
@@ -29,17 +27,17 @@ public class GetReel {
     public File getReels(String linkofReel){
         // Configuring the system properties of chrome driver
 
-        //System.setProperty("webdriver.chrome.driver", "/home/shashi/Downloads/ReelScraper-master/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\HP\\Downloads\\ReelScraper\\ReelScraper\\chromedriver.exe");
 
-        //ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions();
 
-        System.setProperty("webdriver.gecko.driver", "geckodriver");
+        //System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
 
-        FirefoxOptions options =   new FirefoxOptions();
+        //FirefoxOptions options =   new FirefoxOptions();
         //options.setHeadless(true);
         //options.setBinary("/home/shashi/Downloads/ReelScraper-master/google-chrome-stable_current_amd64.deb");
-        //WebDriver driver = new ChromeDriver(options);
-        WebDriver driver = new FirefoxDriver(options);
+        WebDriver driver = new ChromeDriver(options);
+        //WebDriver driver = new FirefoxDriver(options);
 
         driver.get("https://instafinsta.com/reels");
 
@@ -55,6 +53,9 @@ public class GetReel {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("link")));
 
         WebElement link = driver.findElement(By.id("link"));
+
+        //LogEntries logEntries = driver.manage().logs().get(LogType.PERFORMANCE);
+
 
         link.clear();
 
